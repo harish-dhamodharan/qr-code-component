@@ -1,7 +1,7 @@
 <img src="https://github.com/harish-dhamodharan/qr-code-component/blob/main/public/desktop-view.png?raw=true"></img>
 <img src="https://github.com/harish-dhamodharan/qr-code-component/blob/main/public/mobile-view.png?raw=true"></img>
 
-<h1 align="center">URL shortening API landing page</h1>
+<h1 align="center">QR code component</h1>
 
 <div align="center">
   <h3>
