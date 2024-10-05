@@ -5,6 +5,11 @@ on:
     branches:
       - main  # Only run on pushes to the main branch
 
+permissions:
+  contents: write  # Give write access to the bot
+  pages: write     # Allow writing to GitHub Pages
+  id-token: write  # Needed for actions that require GitHub token
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
