@@ -1,0 +1,43 @@
+name: Build and Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # Only run on pushes to the main branch
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the code from the main branch
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Step 2: Set up Node.js (adjust version as needed)
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '20'  # Adjust this if you're using a different version
+
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # Step 4: Build the project (assuming the build output is in 'dist' folder)
+      - name: Build the project
+        run: npm run build  # Ensure you have a build script in your package.json
+
+      # Step 5: Deploy the 'dist' folder to the 'gh-pages' branch
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}  # Default token provided by GitHub Actions
+          publish_dir: ./build  # Path to the build folder
+          publish_branch: gh-pages  # Branch where the build output will be pushed
+          force_orphan: true  # Creates a new orphan branch if the branch doesn't exist
+
+      # Optional: Print deployment URL
+      - name: Output GitHub Pages URL
+        run: echo "Deployed to: https://${{ github.repository_owner }}.github.io/${{ github.repository }}"
+
